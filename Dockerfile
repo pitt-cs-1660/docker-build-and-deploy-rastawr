@@ -7,7 +7,7 @@ WORKDIR /app
 
 COPY go.mod .
 COPY main.go .
-COPY templates/ .
+COPY templates/  ./templates/
 
 RUN CGO_ENABLED=0 go build -o test .
 
@@ -16,7 +16,9 @@ RUN CGO_ENABLED=0 go build -o test .
 # =============================================================================
 FROM scratch
 
-COPY --from=builder test .
-COPY --from=builder templates/ .
+WORKDIR /app
 
-CMD ["test"]
+COPY --from=builder /app/test .
+COPY --from=builder /app/templates/  ./templates/
+
+CMD ["./test"]
