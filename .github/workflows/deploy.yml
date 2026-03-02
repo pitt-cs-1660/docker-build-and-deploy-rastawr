@@ -29,7 +29,6 @@ jobs:
 
       - name: build, tag, and push to ecr
         run: |
-          # todo: replace this step with your docker build, tag, and push commands
-          # refer to docs/docker-commands.md for guidance on the required commands
-          echo "docker build, tag, and push commands not implemented"
-          exit 1
+          docker build -t cs1660-assignment2:v1 .
+          docker tag cs1660-assignment2:v1 944508510733.dkr.ecr.us-east-1.amazonaws.com/go-app:v1
+          docker push 944508510733.dkr.ecr.us-east-1.amazonaws.com/go-app:v1
